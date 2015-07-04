@@ -1,0 +1,41 @@
+[
+	{
+		"name": "Jackson Long",
+		"title": "Boss",
+		"slogan": "Get Money, Fuck Bitches",
+		"thumbnail_url": "https://upload.wikimedia.org/wikipedia/en/7/70/Shawn_Tok_Profile.jpg"
+	},
+	{
+		"name": "David Nguyen",
+		"title": "Web/Software Developer & Entrepreneur",
+		"slogan": "C.R.E.A.M",
+		"thumbnail_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Daniel_Ingram_Profile.png"
+	},
+	{
+		"name": "Angela Li",
+		"title": "Web/Software Developer",
+		"slogan": "I like turtles I like turtles I like turtles I like turtles I like turtles",
+		"thumbnail_url": "http://cdn.devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg"
+
+	},
+	{
+		"name": "Jackson Long",
+		"title": "Boss",
+		"slogan": "Get Money, Fuck Bitches",
+		"thumbnail_url": "https://upload.wikimedia.org/wikipedia/en/7/70/Shawn_Tok_Profile.jpg"
+	},
+	{
+		"name": "David Nguyen",
+		"title": "Web/Software Developer & Entrepreneur",
+		"slogan": "C.R.E.A.M",
+		"thumbnail_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Daniel_Ingram_Profile.png"
+	},
+	{
+		"name": "Angela Li",
+		"title": "Web/Software Developer",
+		"slogan": "I like turtles",
+		"thumbnail_url": "http://cdn.devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg"
+
+	}
+
+]

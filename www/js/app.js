@@ -17,3 +17,34 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+.controller('ListController', ['$scope', '$http', function($scope, $http){
+
+  $http.get('js/data.json').success(function(data) {
+    $scope.contacts = data;
+
+  });
+
+  $scope.onItemDelete = function(contact) {
+   $scope.contacts.splice($scope.contacts.indexOf(contact), 1)
+  };
+
+  $scope.moveItem = function(contact, fromIndex, toIndex) {
+    $scope.contacts.splice(fromIndex, 1);
+    $scope.contacts.splice(toIndex, 0, contact);
+  };
+
+  $scope.toggleStar = function(contact) {
+   contact.star = !contact.star;
+  }
+
+  $scope.doRefresh = function() {
+      $http.get('js/data.json').success(function(data) {
+         $scope.contacts = data;
+         $scope.$broadcast('scroll.refreshComplete');
+      });
+  }
+
+
+
+}]);
