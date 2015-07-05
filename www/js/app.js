@@ -18,10 +18,44 @@ angular.module('starter', ['ionic'])
   });
 })
 
-.controller('ListController', ['$scope', '$http', function($scope, $http){
+.config(function($stateProvider, $urlRouterProvider) {
+   $stateProvider
+      .state('tabs', {
+         url: '/tab',
+         abstract: true,
+         templateUrl: 'templates/tabs.html'
+      })
+      .state('tabs.list', {
+         url: '/list',
+         views: {
+            'list-tab': {
+               templateUrl: 'templates/list.html',
+               controller: 'ListController'
+            }
+         }
+      })
+      .state('tabs.detail', {
+         url: '/list/:cId',
+         views: {
+            'list-tab': {
+               templateUrl: 'templates/detail.html',
+               controller: 'ListController'
+            }
+         }
+      })
+      $urlRouterProvider.otherwise('/tab/list');
+})
+
+.controller('ListController', ['$scope', '$http', '$state', function($scope, $http, $state){
 
   $http.get('js/data.json').success(function(data) {
     $scope.contacts = data;
+
+    $scope.whichContact = $state.params.cId;
+    $scope.data = {
+      showDelete: false,
+      showReorder: false
+    };
 
   });
 
@@ -44,7 +78,6 @@ angular.module('starter', ['ionic'])
          $scope.$broadcast('scroll.refreshComplete');
       });
   }
-
 
 
 }]);

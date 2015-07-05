@@ -1,84 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+      <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+      <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+      <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+      <link href="css/ionic.app.css" rel="stylesheet">
+      -->
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+      <!-- ionic/angularjs js -->
+      <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+      <!-- cordova script (this will be a 404 during development) -->
+      <script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
+      <!-- your app's js -->
+      <script src="js/app.js"></script>
+   </head>
 
-    <ion-pane ng-controller="ListController">
+   <body ng-app="starter">
 
-      <ion-header-bar class="bar-positive">
+      <ion-nav-bar class="bar-positive">
+         <ion-nav-back-button></ion-nav-back-button>
+      </ion-nav-bar>
 
-        <button class="button button-icon ion-minus-circled" ng-click="data.showDelete = !data.showDelete"></button>
+      <ion-nav-view></ion-nav-view>
+   
+   </body>
 
-        <h1 class="title">LinkSpot Contacts</h1>
-
-        <button class="button button-icon ion-navicon" ng-click="data.showReorder = !data.showReorder"></button>
-
-      </ion-header-bar>
-
-      <div class="bar bar-subheader item-input-inset bar-light">
-        <label class="item-input-wrapper">
-          <i class="icon ion-search placeholder-icon"></i>
-          <input type="search" ng-model="query" placeholder="Search">
-        </label>
-      </div>
-
-      <ion-tabs class="tabs-icon-top">
-        <ion-tab icon="ion-ios-people ion-android-people" title="Contacts" badge="2" badge-style="badge-positive"></ion-tab>
-        <ion-tab icon="ion-camera" title="Camera"></ion-tab>
-        <ion-tab icon="ion-person" title="Profile"></ion-tab>
-      </ion-tabs>
-
-      <ion-content class="has-subheader has-tabs">
-
-         <ion-refresher on-refresh="doRefresh()"></ion-refresher>
-
-         <ion-item class="item-divider">Pending Contacts</ion-item>
-            <ion-item class=>Connection Request 1</ion-item>
-            <ion-item>Connection Request 2</ion-item>
-
-         <ion-item class="item-divider">Your Contacts</ion-item>
-            <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-               <ion-item ng-class="{ 'star' : contact.star }" ng-repeat="contact in contacts | filter: query" class="item-thumbnail-left item-icon-right item-text-wrap">
-                  <img ng-src="{{ contact.thumbnail_url }}" alt="photo">
-                  <h2>{{ contact.name }}</h2>
-                  <h3>{{ contact.title }}</h3>
-                  <p>{{ contact.slogan | limitTo: 50 }}{{ contact.slogan.length>50 ? "&hellip;" : ""}}</p>
-                  <button class="button button-clear icon ion-star button-assertive"
-                     ng-click="toggleStar(contact)" ng-show="contact.star">
-                  </button>
-                  <ion-option-button class="button-dark" ng-click="toggleStar(contact)">
-                     <i class="ion-star"></i>
-                  </ion-option-button>
-                  <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(contact)">
-                  </ion-delete-button>
-                  <ion-reorder-button class="ion-navicon" 
-                    on-reorder="moveItem(contact, $fromIndex, $toIndex)">
-                  </ion-reorder-button>
-               </ion-item>
-            </ion-list>
-
-      </ion-content>
-
-    </ion-pane>
-  </body>
 </html>

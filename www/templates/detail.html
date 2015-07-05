@@ -1,0 +1,17 @@
+<ion-header-bar class="bar-positive">
+	<h2 class="title">More Info</h2>
+</ion-header-bar>
+
+<ion-view>
+	<ion-content>
+		<ion-list class="list-inset">
+			<ion-item class="item-text-wrap" 
+			ng-repeat="contact in contacts | filter: { id: whichContact }">
+				<img ng-src="{{ contact.thumbnail_url }}" alt="photo">
+				<h2>{{ contact.name }}</h2>
+				<h3>{{ contact.title }}</h3>
+				<p>{{ contact.slogan }}</p>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>
