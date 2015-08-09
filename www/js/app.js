@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic', 'firebase', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -43,21 +43,31 @@ angular.module('starter', ['ionic'])
             }
          }
       })
+      .state('tabs.camera', {
+         url: '/camera',
+         views: {
+            'camera-tab': {
+               templateUrl: 'templates/camera.html',
+               controller: 'BarcodeController'
+            }
+         }
+      })
       $urlRouterProvider.otherwise('/tab/list');
 })
 
-.controller('ListController', ['$scope', '$http', '$state', function($scope, $http, $state){
+.factory("PeopleData", function($firebaseArray) {
+  var dataRef = new Firebase("https://linkspot.firebaseIO.com/");
+  return $firebaseArray(dataRef);
+})
 
-  $http.get('js/data.json').success(function(data) {
-    $scope.contacts = data;
+.controller('ListController', ['$scope', '$http', '$state', 'PeopleData', function($scope, $http, $state, PeopleData){
 
+    $scope.contacts = PeopleData;
     $scope.whichContact = $state.params.cId;
     $scope.data = {
       showDelete: false,
       showReorder: false
     };
-
-  });
 
   $scope.onItemDelete = function(contact) {
    $scope.contacts.splice($scope.contacts.indexOf(contact), 1)
@@ -80,4 +90,31 @@ angular.module('starter', ['ionic'])
   }
 
 
-}]);
+}])
+
+.controller('BarcodeController', ['$scope', '$cordovaBarcodeScanner', '$ionicPlatform', function($scope, $cordovaBarcodeScanner, $ionicPlatform) {
+
+  $ionicPlatform.ready(function() {
+    console.log("device is ready")
+    $scope.scanBarcode = function() {
+      console.log("button ")
+      $cordovaBarcodeScanner
+      .scan()
+      .then(function(imageData) {
+        alert(imageData.text);
+        console.log("format " + imageData.format);
+      }, function(error) {
+        console.log("An error happened " + error);
+      });
+    }
+  });    
+
+}])
+
+;
+
+
+
+
+
+
