@@ -23,8 +23,11 @@ angular.module('linkSpot')
           .success(function(data) {
               console.log("success");
               $scope.image = data;
-              console.log(data);
-              console.log("$scope.image is: " + $scope.image);
+              // var file = new Blob([data], {type: 'image/png'});
+              // saveAs(file, "qrcode.png");
+              // console.log(data);
+              // console.log("$scope.image is: " + $scope.image);
+              // http://iswwwup.com/t/004d362961e5/display-png-with-raw-image-data-within-an-html-document-using-php.html
           })
           .error(function(data) {
               alert("ERROR");
