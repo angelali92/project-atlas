@@ -1,9 +1,9 @@
 
 angular.module('linkSpot')
 
-  .controller('ListController', ['$scope', '$http', '$state', 'PeopleData', function($scope, $http, $state, PeopleData){
+  .controller('ListController', ['$scope', '$http', '$state', 'Contacts', function($scope, $http, $state, Contacts){
 
-    $scope.contacts = PeopleData;
+    $scope.contacts = Contacts;
     $scope.whichContact = $state.params.cId;
     $scope.data = {
       showDelete: false,
