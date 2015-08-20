@@ -52,7 +52,17 @@ angular.module('starter', ['ionic', 'firebase', 'ngCordova'])
             }
          }
       })
-      $urlRouterProvider.otherwise('/tab/list');
+      .state('signup', {
+         url: '/signup',
+         templateUrl: 'templates/signup.html',
+         controller: 'SignupController'
+      })
+      .state('login', {
+         url: '/login',
+         templateUrl: 'templates/login.html',
+         controller: 'LoginController'
+      });
+      $urlRouterProvider.otherwise('/signup');
 })
 
 .factory("PeopleData", function($firebaseArray) {
@@ -110,6 +120,46 @@ angular.module('starter', ['ionic', 'firebase', 'ngCordova'])
   });    
 
 }])
+
+.controller('SignupController', ['$scope', function($scope) {
+
+    $scope.signUp = function(submittedForm) {
+
+        var ref = new Firebase("https://linkspot.firebaseIO.com/");
+        ref.createUser({
+            "email": submittedForm.email,
+            "password": submittedForm.password  
+        }, function(error, userData) {
+            if (error) {
+                alert("Error creating user", error);
+            } else {
+                alert("Successfully created user account with uid", userData.uid);
+            }
+        })
+    }
+
+}])
+
+.controller('LoginController', ['$scope', function($scope) {
+
+    $scope.logIn = function(submittedForm) {
+
+        var ref = new Firebase("https://linkspot.firebaseIO.com/");
+        ref.authWithPassword({
+            "email": submittedForm.email,
+            "password": submittedForm.password  
+        }, function(error, authData) {
+            if (error) {
+                alert("Login Failed", error);
+            } else {
+                alert("Authenticated successfully with payload", authData.uid);
+            }
+        })
+    }
+
+}])
+
+
 
 ;
 
