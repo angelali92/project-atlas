@@ -61,12 +61,12 @@ angular.module('starter', ['ionic', 'firebase', 'ngCordova'])
          url: '/login',
          templateUrl: 'templates/login.html',
          controller: 'LoginController'
-      });
+      })
       .state('qrCode', {
          url: '/qrCode',
          templateUrl: 'templates/qrcode.html',
          controller: 'qrController'
-      })
+      });
       $urlRouterProvider.otherwise('/signup');
 })
 
