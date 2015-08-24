@@ -1,37 +1,30 @@
 angular.module('linkSpot')
 
-  .controller('qrController', function($scope, $http) {
- 
-    $scope.getData = function() {
-        // $http({
-        //   method: 'GET',
-        //   url: "http://api.qrcode.unitag.fr/api",
-        //   headers: {'Content-Type': 'text/plain'} 
-        // })
-        $http.get("http://api.qrcode.unitag.fr/api", 
-          { 
-            params: 
-              { 
-                "t_pwd": "degraded", 
-                "setting": {},
-                "data":  {
-                  "DATA": {"TEXT": "Hello"},
-                  "TYPE": "text"
+    .controller('qrController', function($scope, $http) {
+        var fetchBlob = function(uri, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', uri, true);
+            xhr.responseType = 'arraybuffer';
+
+            xhr.onload = function(e) {
+                if(this.status == 200) {
+                    var blob = this.response;
+                    if(callback) {
+                        callback(blob);
+                    }
                 }
-              } 
-          })
-          .success(function(data) {
-              console.log("success");
-              $scope.image = data;
-              // var file = new Blob([data], {type: 'image/png'});
-              // saveAs(file, "qrcode.png");
-              // console.log(data);
-              // console.log("$scope.image is: " + $scope.image);
-              // http://iswwwup.com/t/004d362961e5/display-png-with-raw-image-data-within-an-html-document-using-php.html
-          })
-          .error(function(data) {
-              alert("ERROR");
-          });
-    }
- 
-});
+            };
+            xhr.send();
+        };
+
+        $scope.getData = function() {
+
+            var url = 'http://api.qrcode.unitag.fr/api?t_pwd=degraded&T=PNG&setting={}&data={"DATA":{"EMAIL":"abc@123.com", "EMAIL_OBJ":"Hello", "EMAIL_CORPS":"What is this?"},"TYPE":"email"}';
+            $scope.image = "temp";
+            fetchBlob(url, function(blob) {
+                str = String.fromCharCode.apply(null, new Uint8Array(blob));
+                document.getElementById("qr-image").src = 'data:image/png;base64,' + btoa(str);
+            });
+        }
+
+    });
