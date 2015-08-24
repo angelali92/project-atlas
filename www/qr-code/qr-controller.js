@@ -19,7 +19,7 @@ angular.module('linkSpot')
 
         $scope.getData = function() {
 
-            var url = 'http://api.qrcode.unitag.fr/api?t_pwd=degraded&T=PNG&setting={}&data={"DATA":{"EMAIL":"abc@123.com", "EMAIL_OBJ":"Hello", "EMAIL_CORPS":"What is this?"},"TYPE":"email"}';
+            var url = 'http://api.qrcode.unitag.fr/api?t_pwd=degraded&T=PNG&setting={"LAYOUT":{"COLORBG":"ffffff","GRADIENT_TYPE":"DIAG1","COLOR1":"872BE3", "COLOR2":"DCC7F2"},"EYES":{"EYE_TYPE":"ECurve_ICurve"},"BODY_TYPE":1,"ARRONDI":7}&data={"DATA":{"TEXT":"3"},"TYPE":"text"}';
             $scope.image = "temp";
             fetchBlob(url, function(blob) {
                 str = String.fromCharCode.apply(null, new Uint8Array(blob));
