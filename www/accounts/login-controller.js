@@ -7,12 +7,16 @@ angular.module('linkSpot')
 	            if (error) {
 	                alert("Login Failed", error);
 	            } else {
-	                alert("Authenticated successfully with payload", authData.uid);
+	                alert("Authenticated successfully with payload " + authData.uid 
+	                	+ " is logged in with " + authData.provider
+	                	+ " with token " + authData.token
+	                	+ " and expires on " + authData.expires, authData.uid);
 	                $state.go('tabs.list');
 	            }
 	    	}
 
 	        var ref = new Firebase("https://linkspot.firebaseIO.com/");
+	        
 	        ref.authWithPassword({
 	            "email": submittedForm.email,
 	            "password": submittedForm.password  
