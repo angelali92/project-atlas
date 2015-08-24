@@ -3,17 +3,21 @@
 
       <form name="signupForm" ng-submit="logIn(loginForm)">
         <div class="list list-inset">
-          <label class="item item-input">
-            <input type="text" placeholder="Email" ng-model="loginForm.email">
-          </label>
-          <label class="item item-input">
-            <input type="password" placeholder="Password" ng-model="loginForm.password">
-          </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Email" ng-model="loginForm.email">
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="Password" ng-model="loginForm.password">
+            </label>
+            <button class="button button-outline button-block button-positive">
+                Log In
+            </button>
         </div>
-        <button class="button button-outline button-full button-positive">
-          Sign Up
-        </button>
+
       </form>
+
+      <div style="text-align:center"><a href="#/signup">Don't have an account? Sign up here.</a></div>
+
 
       </ion-content>
       
