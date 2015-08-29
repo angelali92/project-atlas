@@ -67,7 +67,7 @@ angular.module('linkSpot', ['ionic', 'firebase', 'ngCordova'])
          templateUrl: 'qr-code/qrcode.html',
          controller: 'qrController'
       });
-      $urlRouterProvider.otherwise('/signup');
+      $urlRouterProvider.otherwise('/login');
 });
 
 
