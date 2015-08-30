@@ -62,6 +62,11 @@ angular.module('linkSpot', ['ionic', 'firebase', 'ngCordova'])
          templateUrl: 'accounts/login.html',
          controller: 'LoginController'
       })
+      .state('profile', {
+         url: '/profile',
+         templateUrl: 'accounts/profile.html',
+         controller: 'ProfileController'
+      })
       .state('qrCode', {
          url: '/qrCode',
          templateUrl: 'qr-code/qrcode.html',

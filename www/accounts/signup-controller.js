@@ -1,14 +1,24 @@
 angular.module('linkSpot')
 	.controller('SignupController', ['$scope', '$state', function($scope, $state) {
 
+		$scope.error = { isLoading: false };
+		$scope.errorMessage = "Error";
+
 	    $scope.signUp = function(submittedForm) {
 
 	    	if (submittedForm.password === submittedForm.passwordConfirm) {
+	    		// Also add in error check for no fields populated
+
 		    	function authHandler(error, authData) {
 		            if (error) {
-		                alert("Signup Failed", error);
+		                $scope.errorMessage = errorHandler(error.code);
+		                $scope.error.isLoading = true;
+						$scope.$apply();
 		            } else {
 		                alert("Authenticated successfully with payload " + authData.uid, authData.uid);
+						$scope.error.isLoading = false;
+						$scope.$apply();
+
 		                ref.authWithPassword({
 				            "email": submittedForm.email,
 				            "password": submittedForm.password  
@@ -21,26 +31,27 @@ angular.module('linkSpot')
 
 	        				fetchQRCode(url, function(imageCode) {
 								ref.child('people').child(newUserAuth.uid).set({
+									name: submittedForm.fullname,
 			                		email: newUserAuth.password.email,
+			                		thumbnail_url: newUserAuth.password.profileImageURL,
 			                		qrCode: imageCode
 		                		});
-		                		document.getElementById("qr-image").src = imageCode;
 	        				});
 		                	
 		        		});
 		               
-		                // $state.go('tabs.list');
+		                $state.go('profile');
 		            }
 		    	}
 
 		        var ref = new Firebase("https://linkspot.firebaseIO.com/");
 		        ref.createUser({
-		        	"name": submittedForm.name,
 		            "email": submittedForm.email,
 		            "password": submittedForm.password  
 		        }, authHandler)
 	    	} else {
-	    		return alert("Passwords need to match")
+	    		$scope.errorMessage = "Passwords need to match.";
+				$scope.error.isLoading = true;
 	    	}
 
 
@@ -65,4 +76,10 @@ angular.module('linkSpot')
             xhr.send();
         };
 
+        var errorHandler = function(code) {
+			if(code=="INVALID_EMAIL")
+				return "The specified email address is invalid."
+			else if (code == "EMAIL_TAKEN")
+				return "The specified email address is already in use."
+        }
 	}]);
