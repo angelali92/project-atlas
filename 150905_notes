@@ -1,0 +1,28 @@
+Solve problem of adding new users
+- public repository of your profile? like yelp
+- ^ where you can find and search people
+
+Ideas
+- take picture of business card
+- start as repository of business cards
+- logically group it - geotag, date, by convention / event
+- image recognition - open source? OCR - not too advanced
+- captions / notes (comes up right after you tag it) (searchable)
+- kind of like todo list (of emails)
+
+Follow the LinkedIn model / Lean Startup
+- 1. manage business cards (cloud storage) / grouping by location and date
+--- a. seamlessly transition to web interface (access business through computer)
+- 2. captioning it? / notes
+- 3. creating profile / logging in quickly (facebook login)
+- 4. creating connections (social network)
+
+Database
+- Firebase
+- Cloudpipes
+
+Revenue Models
+- Ad
+- Freemium
+- Users most important, money follows
+- Pay for storage?
