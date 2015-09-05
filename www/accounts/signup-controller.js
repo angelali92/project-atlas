@@ -40,7 +40,7 @@ angular.module('linkSpot')
 		                	
 		        		});
 		               
-		                $state.go('profile');
+		                $state.go('tabs.profile');
 		            }
 		    	}
 

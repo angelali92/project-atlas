@@ -11,7 +11,7 @@ angular.module('linkSpot')
 	                	+ " is logged in with " + authData.provider
 	                	+ " with token " + authData.token
 	                	+ " and expires on " + authData.expires, authData.uid);
-	                $state.go('tabs.list');
+	                $state.go('tabs.profile');
 	            }
 	    	}
 

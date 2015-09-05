@@ -25,6 +25,15 @@ angular.module('linkSpot', ['ionic', 'firebase', 'ngCordova'])
          abstract: true,
          templateUrl: 'templates/tabs.html'
       })
+      .state('tabs.profile', {
+         url: '/profile',
+         views: {
+            'profile-tab': {
+               templateUrl: 'accounts/profile.html',
+               controller: 'ProfileController'
+            }
+         }
+      })
       .state('tabs.list', {
          url: '/list',
          views: {
@@ -61,11 +70,6 @@ angular.module('linkSpot', ['ionic', 'firebase', 'ngCordova'])
          url: '/login',
          templateUrl: 'accounts/login.html',
          controller: 'LoginController'
-      })
-      .state('profile', {
-         url: '/profile',
-         templateUrl: 'accounts/profile.html',
-         controller: 'ProfileController'
       })
       .state('qrCode', {
          url: '/qrCode',
