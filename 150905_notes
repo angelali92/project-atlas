@@ -11,15 +11,17 @@ Ideas
 - kind of like todo list (of emails)
 
 Follow the LinkedIn model / Lean Startup
+- 0. figure out data storage and data schema
 - 1. manage business cards (cloud storage) / grouping by location and date
 --- a. seamlessly transition to web interface (access business through computer)
 - 2. captioning it? / notes
+--- a. adding public searching functionality
 - 3. creating profile / logging in quickly (facebook login)
 - 4. creating connections (social network)
 
 Database
 - Firebase
-- Cloudpipes
+- Amazon for photos? Switch?
 
 Revenue Models
 - Ad
